@@ -25,6 +25,19 @@ export function generate(input: Input): Output {
           mountPath: "/var/www/baikal",
         },
       ],
+            // ----- NEW: environment block with MSMTPRC -----
+      environment: {
+        MSMTPRC: `defaults
+          auth           on
+          tls            on
+          tls_trust_file /etc/ssl/certs/ca-certificates.crt
+          account        default
+          host           smtp.protonmail.ch
+          port           587
+          from           baikal@example.com
+          user           <user>
+          password       <password>`
+      }
     },
   });
 
